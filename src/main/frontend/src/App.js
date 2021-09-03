@@ -1,5 +1,4 @@
 import React, {useState, useEffect, useCallback} from "react";
-import logo from './logo.svg';
 import './App.css';
 import axios from "axios";
 import {useDropzone} from "react-dropzone";
@@ -19,15 +18,20 @@ const UserProfile = () => {
     fetchUserProfiles();
   }, []);
 
-  return userProfiles.map((userProfiles, index) =>{
+  return userProfiles.map((userProfile, index) =>{
 
     return (
         <div key={index}>
+            {userProfile.userProfileId ? (
+                <img
+                src={'http://localhost:8080/api/v1/user-profile/${user.Profile.userProfileId}(image/download'}
+                />
+            ) : null}
           <br/>
           <br/>
-          <h1>{userProfiles.username}</h1>
-          <p>{userProfiles.userProfileId}</p>
-          <MyDropzone {...userProfiles}/>
+          <h1>{userProfile.username}</h1>
+          <p>{userProfile.userProfileId}</p>
+          <MyDropzone {...userProfile}/>
           <br/>
         </div>
     )
